@@ -1,8 +1,8 @@
 set nu
-set ff=unix
 set fileformat=unix
 set showcmd             " show command in bottom bar
-set cursorline          " highlight current line
+set cursorline          " highlight current line: cul
+set cuc                 " current column: cuc
 set showmatch           " highlight matching [{()}]
 set hlsearch		" highlight search
 set showmode
@@ -15,6 +15,12 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+
+" for yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+"list file when tab with :e
+set wildmode=list,full
 
 " plugin/taglist.vim
 let Tlist_Auto_Highlight_Tag        = 1
@@ -33,3 +39,15 @@ set t_Co=256
 colorscheme desert
 syntax on
 let python_highlight_all = 1
+
+" color for cul and cuc
+highlight CursorLine   cterm=NONE ctermbg=black ctermfg=blue
+" highlight CursorColumn cterm=NONE ctermbg=LightGray ctermfg=green guibg=NONE guifg=NONE
+
+" highlight trailing spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+" match only work for current window, use autocmd to apply to new open buffers
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+

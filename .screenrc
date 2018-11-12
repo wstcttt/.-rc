@@ -14,7 +14,7 @@
 # SCREEN SETTINGS
 # ------------------------------------------------------------------------------
 
-#startup_message off
+startup_message off
 #nethack on
 
 #defflow on # will force screen to process ^S/^Q
@@ -26,7 +26,7 @@ vbell on
 vbell_msg "   Wuff  ----  Wuff!!  "
 
 # define a bigger scrollback, default is 100 lines
-defscrollback 1024
+defscrollback 30000
 
 # ------------------------------------------------------------------------------
 # SCREEN KEYBINDINGS
@@ -104,6 +104,6 @@ termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' # 開啟 256 色模式
 hardstatus off
 #caption always "%{kk}XXXXXXX"
 #caption always "%{+b rk}${USER}@%H%{gk} |%c %{yk}%d.%m.%Y | %72=Load: %l %{wk}"
-caption always "%{+b rk}%72=INFO: ${USER}@%H%{gk} |%c %{yk}%Y-%m-%d"
+caption always "%{+b rk}%52=INFO: ${USER}@%H%{gk} |%c %{yk}%Y-%m-%d"
 hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<  %=% [%{=b)%{Y}%l%{g}]"
 defshell -bash
