@@ -9,6 +9,8 @@ eval "`dircolors`"
 alias ls='ls $LS_OPTIONS'
 export GREP_OPTIONS='--color=auto'
 
+set -o vi
+
 #perforce
 export P4PORT=perforce.eng.vmware.com:1666
 export P4USER=tjun

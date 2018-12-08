@@ -1,0 +1,4 @@
+set editing-mode vi
+set history-size 0
+set completion-ignore-case on
+
