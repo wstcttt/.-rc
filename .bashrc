@@ -11,6 +11,16 @@ export GREP_OPTIONS='--color=auto'
 alias ..='cd ..'
 alias ll='ls -alt'
 
+Blue='\033[34m'
+Green='\033[32m'
+Cyan='\033[36m'
+Red='\033[31m'
+Purple='\033[35m'
+Brown='\033[33m'
+STARTFGCOLOR=$Green
+ENDCOLOR="\033[0m"
+export PS1="$STARTFGCOLOR[\t] \u@\h: \w \n\s-\v\$ $ENDCOLOR"
+
 set -o vi
 
 #perforce
