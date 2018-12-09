@@ -8,6 +8,8 @@ export LS_OPTIONS='--color=auto'
 eval "`dircolors`"
 alias ls='ls $LS_OPTIONS'
 export GREP_OPTIONS='--color=auto'
+alias ..='cd ..'
+alias ll='ls -alt'
 
 set -o vi
 
