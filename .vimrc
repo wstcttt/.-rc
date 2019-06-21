@@ -16,6 +16,20 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
+" show more info on statusline
+set laststatus=2
+set statusline=%F       "full path of the file
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=\ %h      "help file flag
+set statusline+=\ %m      "modified flag
+set statusline+=\ %r      "read only flag
+set statusline+=\ %y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=\ col:%c,     "cursor column
+set statusline+=\ row:%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+
 " for yaml
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
@@ -43,6 +57,7 @@ let python_highlight_all = 1
 " color for cul and cuc
 highlight CursorLine   cterm=NONE ctermbg=black ctermfg=blue
 " highlight CursorColumn cterm=NONE ctermbg=LightGray ctermfg=green guibg=NONE guifg=NONE
+highlight CursorColumn cterm=NONE ctermbg=blue ctermfg=white guibg=blue guifg=white
 
 " highlight trailing spaces
 highlight ExtraWhitespace ctermbg=red guibg=red

@@ -3,12 +3,44 @@ TERM=xterm-256color
 
 kill -WINCH $$
 
-export LS_OPTIONS='--color=auto'
-eval "`dircolors`"
-alias ls='ls $LS_OPTIONS'
+#export LS_OPTIONS='--color=auto'
+#eval "`dircolors`"
+#alias ls='ls $LS_OPTIONS'
+alias ls='ls -G'
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
 export GREP_OPTIONS='--color=auto'
 alias ..='cd ..'
 alias ll='ls -alt'
+
+#####hack the rm#####
+alias rm=trash
+alias rl='ls ~/.trash'
+alias ur=untrash
+trash()
+{
+    echo "------------"
+    echo "This is not the real rm, no option needed"
+    echo "You can recover file from ~/.trash, or just use: ur <file>"
+    echo "Use the real /bin/rm to delete permanently, be careful!!!"
+    echo "------------"
+    mkdir -p ~/.trash
+    mv $@ ~/.trash/
+}
+untrash()
+{
+    echo "Recover from ~/.trash, files: $@"
+    for p in $*; do
+        mv -i ~/.trash/$p .
+    done
+}
+cleartrash()
+{
+    read -p "WARNING!!!:  Delete files in ~/.trash permanently, are you sure?[n]" confirm
+    [[ $confirm == 'y' ]] || [[ $confirm == 'Y' ]]  && /bin/rm -rf ~/.trash/* && echo "All files cleared"
+}
+#####done of hack the rm#####
 
 Blue='\033[34m'
 Green='\033[32m'
@@ -22,7 +54,3 @@ export PS1="\[$STARTFGCOLOR\][\t] \u@\h: \w \n\s-\v\$ \[$ENDCOLOR\]"
 
 set -o vi
 
-#perforce
-export P4PORT=perforce.eng.vmware.com:1666
-export P4USER=tjun
-export P4IGNORE=.p4ignore
