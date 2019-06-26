@@ -26,7 +26,7 @@ trash()
     echo "Use the real /bin/rm to delete permanently, be careful!!!"
     echo "------------"
     mkdir -p ~/.trash
-    mv $@ ~/.trash/
+    mv $@ ~/.trash/ && echo "Done."
 }
 untrash()
 {

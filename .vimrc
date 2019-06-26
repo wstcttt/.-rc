@@ -87,3 +87,23 @@ match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+" For netrw
+let g:netrw_liststyle = 3
+let g:netrw_altv = 1
+let g:netrw_list_hide = '.*\.swp$'
+
+"""default open in same window, 1 in new h-split, 2 in v-split, 3 in new tab
+"""4 in previous window
+let g:netrw_browse_split = 2
+
+" let g:netrw_winsize = 24
+
+"""Auto open netrw when open vim
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+"   autocmd VimEnter * :wincmd p
+" augroup END
+nnoremap <silent> <F9> :Vex<CR>
+
+
