@@ -96,7 +96,7 @@ let g:netrw_list_hide = '.*\.swp$'
 """4 in previous window
 let g:netrw_browse_split = 2
 
-" let g:netrw_winsize = 24
+let g:netrw_winsize = 20
 
 """Auto open netrw when open vim
 " augroup ProjectDrawer
@@ -106,4 +106,17 @@ let g:netrw_browse_split = 2
 " augroup END
 nnoremap <silent> <F9> :Vex<CR>
 
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+"Copy/paste with system clipboard
+noremap <Leader>y "+y
+noremap <Leader>x "+x
+noremap <Leader>p "+p
+noremap <Leader>P "+P
+noremap <Leader>yy "+yy
+noremap <Leader>dd "+dd
+"set clipboard=unnamedplus
 
