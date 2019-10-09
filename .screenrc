@@ -106,4 +106,5 @@ hardstatus off
 #caption always "%{+b rk}${USER}@%H%{gk} |%c %{yk}%d.%m.%Y | %72=Load: %l %{wk}"
 caption always "%{+b rk}%52=INFO: ${USER}@%H%{gk} |%c %{yk}%Y-%m-%d"
 hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<  %=% [%{=b)%{Y}%l%{g}]"
+#hardstatus alwayslastline '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W} %c %{g}]'
 defshell -bash

@@ -1,18 +1,26 @@
+#create or attach the screen when start the shell
+if [[ -z "$STY" ]]; then
+    screen -xRR jun
+fi
+
 TERM=xterm-256color
 [[ $- == *i* ]] || return 0
 
 kill -WINCH $$
 
-#export LS_OPTIONS='--color=auto'
-#eval "`dircolors`"
-#alias ls='ls $LS_OPTIONS'
-alias ls='ls -G'
-export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+if [ "$(uname)" == "Darwin" ]; then
+    alias ls='ls -G'
+    export CLICOLOR=1
+    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+else
+    export LS_OPTIONS='--color=auto'
+    eval "`dircolors`"
+    alias ls='ls $LS_OPTIONS'
+fi
 
 export GREP_OPTIONS='--color=auto'
 alias ..='cd ..'
-alias ll='ls -alt'
+alias ll='ls -al'
 
 #####hack the rm#####
 alias rm=trash
@@ -54,3 +62,8 @@ export PS1="\[$STARTFGCOLOR\][\t] \u@\h: \w \n\s-\v\$ \[$ENDCOLOR\]"
 
 set -o vi
 
+####functions####
+function cprc() {
+    scp ~/.bashrc ~/.vimrc ~/.screenrc ~/.inputrc $1:${2:-\~}/.
+    ssh -t $1 "cd ${2:-~}"
+}
