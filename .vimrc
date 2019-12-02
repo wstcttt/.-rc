@@ -1,10 +1,16 @@
 """"" Start for Vundle plugin manager
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 call vundle#begin()
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ycm-core/YouCompleteMe'
+Plugin 'luochen1990/rainbow'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -88,8 +94,8 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " For netrw
-let g:netrw_liststyle = 3
-let g:netrw_altv = 1
+let g:netrw_liststyle = 3  " tree view
+let g:netrw_altv = 1       " open splits to the right
 let g:netrw_list_hide = '.*\.swp$'
 
 """default open in same window, 1 in new h-split, 2 in v-split, 3 in new tab
@@ -120,3 +126,63 @@ noremap <Leader>yy "+yy
 noremap <Leader>dd "+dd
 "set clipboard=unnamedplus
 
+" Search down into subfolders
+" " Provides tab-completion for all file-related tasks
+set path+=**
+set wildmenu
+
+" AUTOCOMPLETE:
+" The good stuff is documented in |ins-completion|
+" HIGHLIGHTS:
+" - ^x^n for JUST this file
+" - ^x^f for filenames (works with our path trick!)
+" - ^x^] for tags only
+" - ^n for anything specified by the 'complete' option
+
+" allow backspace to go over indent etc
+set backspace=indent,eol,start
+
+" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='10,\"100,:20,%,n~/.viminfo
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+
+
+" https://github.com/luochen1990/rainbow/blob/master/README_zh.md
+let g:rainbow_conf = {
+    \    'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+    \    'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+    \    'operators': '_,_',
+    \    'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+    \    'separately': {
+    \        '*': {},
+    \        'tex': {
+    \            'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    \        },
+    \        'lisp': {
+    \            'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \        },
+    \        'vim': {
+    \            'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+    \        },
+    \        'html': {
+    \            'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \        },
+    \        'css': 0,
+    \    }
+    \}
+let g:rainbow_active = 1

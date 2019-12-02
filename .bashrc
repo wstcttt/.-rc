@@ -1,7 +1,7 @@
 #create or attach the screen when start the shell
-if [[ -z "$STY" ]]; then
-    screen -xRR jun
-fi
+#if [[ -z "$STY" ]]; then
+#    screen -xRR jun
+#fi
 
 TERM=xterm-256color
 [[ $- == *i* ]] || return 0
@@ -23,6 +23,7 @@ alias ..='cd ..'
 alias ll='ls -al'
 
 #####hack the rm#####
+alias realrm=/bin/rm
 alias rm=trash
 alias rl='ls ~/.trash'
 alias ur=untrash
