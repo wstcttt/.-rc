@@ -61,6 +61,8 @@ STARTFGCOLOR=$Green
 ENDCOLOR="\033[0m"
 export PS1="\[$STARTFGCOLOR\][\t] \u@\h: \w \n\s-\v\$ \[$ENDCOLOR\]"
 
+export LC_ALL=en_US.UTF-8
+
 set -o vi
 
 ####functions####
